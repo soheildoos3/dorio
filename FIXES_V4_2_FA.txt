@@ -1,0 +1,75 @@
+Dario v4.2 - خلاصه اصلاحات و راه‌اندازی
+=======================================
+
+1) واحد فیزیکی و نام تنوع
+-------------------------
+- در فرم ایجاد واحد فیزیکی، ابتدا نام محصول و سپس تنوع نمایش داده می‌شود:
+  «نام محصول · مقدارهای تنوع»
+- همین الگو در جدول‌های موجودی، رزرو، مکان پیش‌فرض، عملیات انبار، QC و چاپ QR یکدست شده است.
+- نمایش متن‌های فارسی/کدهای مخلوط از dir=auto استفاده می‌کند تا راست‌به‌چپ به‌هم نریزد.
+
+2) فونت پنل
+-----------
+- پنل اصلی و صفحه گارانتی روی Vazirmatn تنظیم شده‌اند.
+- فونت از Google Fonts بارگیری می‌شود و Tahoma/Segoe UI/Arial fallback هستند.
+- فایل فونت باینری در پروژه قرار داده نشده است.
+
+3) گزارش Excel/PDF
+------------------
+- مسیر پنل: تنظیمات سازمانی -> گزارش و پشتیبان (فقط مدیر کل)
+- گزارش‌ها:
+  * موجودی انبار
+  * واحدهای فیزیکی
+  * کاردکس موجودی
+  * فروش
+- خروجی Excel راست‌به‌چپ، Freeze Header و AutoFilter دارد.
+- داده متنی Excel در برابر Formula Injection ایمن شده است.
+- PDF فارسی با ReportLab ساخته می‌شود؛ متن‌ها قبل از Paragraph escape می‌شوند.
+- برای PDF می‌توانید در backend/.env مسیر فونت TTF را قرار دهید:
+  REPORT_FONT_PATH=C:/Windows/Fonts/Vazirmatn-Regular.ttf
+
+4) بکاپ دیتابیس
+---------------
+- مسیر پنل: تنظیمات سازمانی -> گزارش و پشتیبان -> دانلود بکاپ دیتابیس
+- فقط مدیر سیستم به API بکاپ دسترسی دارد.
+- فرمت: JSON.GZ منطقی با شناسه dario-logical-backup-v1
+- شامل تمام جدول‌های ثبت‌شده در SQLAlchemy metadata، تعداد رکورد هر جدول، زمان بکاپ و Alembic revision است.
+- روی PostgreSQL بکاپ داخل تراکنش Repeatable Read / Read Only گرفته می‌شود تا snapshot سازگارتر باشد.
+
+5) Alembic و migration
+----------------------
+- migrations/env.py حالا کل app.modules.models را import می‌کند تا autogenerate مدل‌های حسابداری، تولید و فروش را جا نیندازد.
+- revision قدیمی cb0cf603f543 و شناسه حذف‌شده 3797c9448715 به base واقعی 7b478d243b18 نگاشت می‌شوند.
+- head فعلی: aa91d4e7c612
+- تولید SQL آفلاین تا head با موفقیت بررسی شد.
+
+6) QA انجام‌شده
+---------------
+- pytest: 17 passed
+- Python compileall: موفق
+- SQLAlchemy mapper configuration: موفق (54 جدول در بررسی)
+- Alembic heads: یک head
+- Alembic offline upgrade SQL: موفق
+- 55 فایل TS/TSX با TypeScript parser بررسی شدند: بدون syntax error
+- ساخت واقعی Vite در محیط بررسی انجام نشد چون node_modules نصب نبود و دسترسی npm registry در محیط بررسی پایدار نبود.
+
+7) نصب/ارتقا
+------------
+Backend:
+  cd backend
+  python -m pip install -r requirements.txt
+  python -m alembic upgrade head
+  python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+Panel:
+  cd dario-panel
+  npm ci
+  npm run build
+
+Warranty:
+  cd dario-warranty
+  npm ci
+  npm run build
+
+نکته امنیتی:
+فایل backend/.env واقعی در ZIP تحویلی قرار داده نشده است. .env قبلی خودتان را نگه دارید یا از .env.example بسازید. کلیدهای JWT و DATABASE_URL را در فایل عمومی یا Git قرار ندهید.

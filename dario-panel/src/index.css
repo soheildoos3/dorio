@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Vazirmatn", Tahoma, "Segoe UI", Arial, sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --page-bg: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+  background: var(--page-bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at 100% -10%, rgba(14, 165, 233, 0.065), transparent 28rem),
+    radial-gradient(circle at 0% 105%, rgba(99, 102, 241, 0.035), transparent 26rem),
+    var(--page-bg);
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+select,
+a {
+  touch-action: manipulation;
+}
+
+button:not(:disabled),
+a[href],
+select:not(:disabled) {
+  cursor: pointer;
+}
+
+::selection {
+  background: #bae6fd;
+  color: #0c4a6e;
+}
+
+:focus-visible {
+  scroll-margin: 6rem;
+}
+
+.panel-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.panel-scrollbar::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.panel-scrollbar::-webkit-scrollbar-thumb,
+.overflow-x-auto::-webkit-scrollbar-thumb,
+.overflow-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.panel-scrollbar::-webkit-scrollbar-track,
+.overflow-x-auto::-webkit-scrollbar-track,
+.overflow-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Data-heavy admin tables stay usable on narrow screens without breaking layout. */
+main .overflow-x-auto {
+  max-width: 100%;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+main table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+main table thead th {
+  color: #64748b;
+  font-size: .72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+main table tbody td {
+  vertical-align: middle;
+}
+
+main table tbody tr {
+  transition: background-color .15s ease;
+}
+
+@media (hover: hover) {
+  main table tbody tr:hover {
+    background: rgba(248, 250, 252, .8);
+  }
+}
+
+@media (max-width: 639px) {
+  main table th,
+  main table td {
+    white-space: nowrap;
+  }
+
+  main .overflow-x-auto {
+    background:
+      linear-gradient(to left, white 30%, rgba(255,255,255,0)),
+      linear-gradient(to right, white 30%, rgba(255,255,255,0));
+    background-attachment: local, local;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px !important; /* prevents iOS zoom while keeping desktop typography compact */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

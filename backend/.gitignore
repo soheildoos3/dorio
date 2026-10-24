@@ -1,0 +1,11 @@
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.pytest_cache/
+.env
+storage/media/*
+!storage/media/.gitkeep
+Dario Panel/node_modules/
+Dario Panel/dist/

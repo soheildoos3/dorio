@@ -1,0 +1,21 @@
+# Dario v3 — تغییرات اصلی
+
+- جداسازی کامل Backend و React Panel.
+- یکپارچه‌سازی هویت: customer / employee / tailor همگی User هستند.
+- Role + permission پیش‌فرض + override فردی اجازه/عدم‌اجازه.
+- panel_access مستقل از حساب سایت.
+- SKU محصول و تنوع اختیاری.
+- سریال داخلی کالا اختیاری.
+- تولید اتمیک شماره گارانتی `YYYY-MM-DD-######-Luhn`.
+- اتصال واقعی Attribute/Value به Product و Variant و تولید ترکیب‌ها.
+- تصویر عمومی محصول و تصویر مخصوص هر Variant؛ آپلود فایل در Backend.
+- صفحه تک محصول با گالری/اسلاید، thumbnails، فیلتر Variant و قیمت‌ها.
+- تاریخ‌های نمایشی پنل به تقویم شمسی.
+- کانال‌های فروش/خروج قابل تعریف و مرجع خارجی متنی.
+- رزرو با کد مرجع انسانی به‌جای اجبار ID عددی.
+- شماره انتقال/اصلاح/انبارگردانی/کار خیاط خودکار و اتمیک.
+- داشبورد خیاط‌ها بر پایه User و تاریخچه append-only تحویل.
+- HR فقط برای User نوع employee.
+- خروج انبار تراکنشی با reservation fulfillment، stock، item و kardex هماهنگ.
+- چاپ واقعی QC/Warranty با اندازه 1.78 × 1.96 اینچ و QR گارانتی.
+- JWT در HttpOnly cookie + CSRF + کنترل permission در Backend.

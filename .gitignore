@@ -1,0 +1,113 @@
+# ==========================================
+# 1. تنظیمات عمومی (General / OS / IDE)
+# ==========================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.iml
+
+# ==========================================
+# 2. بخش فرانت‌اند (React / Node.js)
+# ==========================================
+# وابستگی‌ها
+node_modules/
+jspm_packages/
+web_modules/
+
+# خروجی بیلد
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# لاگ‌ها
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# کش‌ها
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.vite/
+
+# فایل‌های محیطی فرانت‌اند
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# ==========================================
+# 3. بخش بک‌اند (Python / FastAPI)
+# ==========================================
+# بایت‌کد و کش پایتون
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# محیط‌های مجازی
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.pixi/
+
+# تست و پوشش کد
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# فایل‌های دیتابیس محلی و لاگ‌های FastAPI
+*.db
+*.sqlite3
+*.db-journal
+*.db-wal
+*.pid
+instance/
+.webassets-cache
+logs/
+
+# فایل‌های محیطی بک‌اند (اطلاعات حساس)
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# 4. استثناها (در صورت نیاز)
+# ==========================================
+# اگر می‌خواهی پوشه‌ای خاصی از بیلد را نگه داری:
+# !dist/some-important-file.js
